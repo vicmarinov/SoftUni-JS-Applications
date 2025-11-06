@@ -1,24 +1,24 @@
-const mainElement = document.getElementsByTagName('main')[0];
 const BASE_URL = 'http://localhost:3030/jsonstore/cookbook';
 
-window.addEventListener('load', async () => {
+window.addEventListener('DOMContentLoaded', async () => {
     const recipesPreviewObjectsArr = await getRecipesPreviewObjectsArr();
     loadRecipes(recipesPreviewObjectsArr);
 });
 
-async function getRecipesPreviewObjectsArr() {
+async function getRecipesPreviewObjectsArr () {
     const response = await fetch(BASE_URL + '/recipes');
     const data = await response.json();
     return Object.values(data);
 }
 
-async function getFullRecipeObjectById(id) {
+async function getFullRecipeObjectById (id) {
     const response = await fetch(BASE_URL + `/details/${id}`);
     const fullRecipeObject = await response.json();
     return fullRecipeObject;
 }
 
-function loadRecipes(recipesPreviewObjectsArr) {
+function loadRecipes (recipesPreviewObjectsArr) {
+    const mainElement = document.getElementsByTagName('main')[0];
     mainElement.innerHTML = '';
 
     for (const recipeObject of recipesPreviewObjectsArr) {
@@ -26,7 +26,7 @@ function loadRecipes(recipesPreviewObjectsArr) {
     }
 }
 
-async function showFullRecipeCard(event) {
+async function showFullRecipeCard (event) {
     const recipeCard = event.currentTarget;
     const recipeId = recipeCard.dataset.id;
 
@@ -35,7 +35,7 @@ async function showFullRecipeCard(event) {
     recipeCard.replaceWith(createFullRecipeCard(fullRecipeObject));
 }
 
-function createRecipePreviewCard(recipeObject) {
+function createRecipePreviewCard (recipeObject) {
     const recipeCard = document.createElement('article');
     recipeCard.className = 'preview';
     recipeCard.dataset.id = recipeObject._id;
@@ -60,7 +60,7 @@ function createRecipePreviewCard(recipeObject) {
     return recipeCard;
 }
 
-function createFullRecipeCard(recipeObject) {
+function createFullRecipeCard (recipeObject) {
     const recipeCard = document.createElement('article');
     recipeCard.dataset.id = recipeObject._id;
 

@@ -2,7 +2,7 @@ const usernameInputElement = document.getElementById('username');
 const repoInputElement = document.getElementById('repo');
 const listElement = document.getElementById('commits');
 
-async function loadCommits() {
+async function loadCommits () {
     listElement.innerHTML = '';
 
     const username = usernameInputElement.value;

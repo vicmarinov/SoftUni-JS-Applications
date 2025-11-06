@@ -1,6 +1,6 @@
 const listElement = document.getElementById('repos');
 
-function loadRepos() {
+function loadRepos () {
     listElement.innerHTML = '';
     
     const username = document.getElementById('username').value;
@@ -37,6 +37,6 @@ function loadRepos() {
         });
 }
 
-function handleError(message) {
+function handleError (message) {
     listElement.textContent = 'Error: ' + message;
 }

@@ -1,6 +1,6 @@
 const REPOS_URL = 'https://api.github.com/users/testnakov/repos';
 
-function loadRepos() {
+function loadRepos () {
     const httpRequest = new XMLHttpRequest();
     httpRequest.addEventListener('readystatechange', function () {
         if (httpRequest.readyState === 4 && httpRequest.status === 200) {
