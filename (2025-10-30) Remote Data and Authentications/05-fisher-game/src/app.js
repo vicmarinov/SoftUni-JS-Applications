@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('addForm').addEventListener('submit', addCatch);
 
     document.getElementById('catches').innerHTML = '';
-    loadCatches();
 });
 
 const CATCHES_URL = 'http://localhost:3030/data/catches';
@@ -76,7 +75,7 @@ async function addCatch (event) {
 
     const addCatchFormElement = event.currentTarget;
 
-    let {
+    const {
         angler,
         weight,
         species, 
@@ -87,14 +86,6 @@ async function addCatch (event) {
 
     if (!angler || !weight || !species || !location || !bait || !captureTime) {
         alert('All the fields are required!');
-        return;
-    }
-
-    weight = Number(weight);
-    captureTime = Number(captureTime);
-
-    if (Number.isNaN(weight) || Number.isNaN(captureTime) || weight <= 0 || captureTime <= 0 || Math.trunc(captureTime) !== captureTime) {
-        alert('The weight and the capture time must be valid numbers!');
         return;
     }
 
