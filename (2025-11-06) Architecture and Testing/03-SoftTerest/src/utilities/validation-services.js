@@ -1,3 +1,6 @@
+import { showView } from "./show-view.js";
+import { userServices } from "./user-services.js";
+
 function validateRegisterFormInput (email, password, repeatPassword) {
     let errorMessage;
 
@@ -43,8 +46,34 @@ function validateCreateFormInput (title, description, imageURL) {
     return !errorMessage;
 }
 
+function validateAccessToView (hasToBeAuthenticated, errorMessage) {
+    if (
+        hasToBeAuthenticated
+        ? !userServices.getUserData.id()
+        : userServices.getUserData.id()
+    ) {
+        alert(errorMessage);
+        showView(new URL(window.location.origin + '/'));
+    }
+}
+
+function validateAccessToRegisterView () {
+    validateAccessToView(false, 'Please log out before registering a new user.');
+}
+
+function validateAccessToLoginView () {
+    validateAccessToView(false, 'Please log out before logging in again.');
+}
+
+function validateAccessToCreateView () {
+    validateAccessToView(true, 'Please log in or register create new ideas.');
+}
+
 export const validationServices = {
     validateRegisterFormInput,
     validateLoginFormInput,
-    validateCreateFormInput
+    validateCreateFormInput,
+    validateAccessToRegisterView,
+    validateAccessToLoginView,
+    validateAccessToCreateView
 };
