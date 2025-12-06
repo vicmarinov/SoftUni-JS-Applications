@@ -1,5 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
-import { onEditFormSubmit } from '../../event-handlers/edit-form.submit.js';
+import { onEditFormSubmit } from '../../event-handlers/edit-form-submit.js';
 
 export function createEditView (furnitureData) {
     return html`
